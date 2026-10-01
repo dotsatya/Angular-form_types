@@ -1,0 +1,116 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+  <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+    <!-- Title -->
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">
+      Template-driven form with validation
+    </h1>
+
+    <p class="text-center text-gray-500 mb-8">Please enter your details to login</p>
+
+    <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="space-y-5">
+      <!-- Name -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2"> *Name </label>
+        <!-- // //// //
+          #name="ngModel"     
+          required
+          minlength="3" 
+        //// Add this line to give a tag as name for validation //// -->
+        <input
+          type="text"
+          name="name"
+          ngModel
+          #name="ngModel"
+          required
+          minlength="3"
+          placeholder="Enter your name"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-red-500 text-xs mt-1">
+          <div *ngIf="name.errors?.['required']">*Name is required.</div>
+          <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters long.</div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2"> *Email </label>
+        <input
+          type="email"
+          name="email"
+          ngModel
+          #email="ngModel"
+          required
+          email
+          placeholder="Enter your email"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="text-red-500 text-xs mt-1"
+        >
+          <div *ngIf="email.errors?.['required']">*Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Invalid email format.</div>
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2"> Gender </label>
+        <select
+          name="gender"
+          ngModel
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2"> *Password </label>
+        <input
+          type="password"
+          name="password"
+          ngModel
+          #password="ngModel"
+          required
+          minlength="6"
+          pattern="[a-zA-Z0-9]{6,}"
+          placeholder="Enter your password"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
+        <div
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="text-red-500 text-xs mt-1"
+        >
+          <div *ngIf="password.errors?.['required']">*Password is required.</div>
+          <div *ngIf="password.errors?.['minlength']">
+            Password must be at least 6 characters long.
+          </div>
+          <div *ngIf="password.errors?.['pattern']">
+            Password must contain at least one letter and one number and no special characters.
+          </div>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <!-- // [disabled]="loginForm.invalid" for validate the form to submit -->
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid"
+        class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 active:scale-[0.98] transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Login
+      </button>
+    </form>
+
+    <!-- ////////////////////////////////////// -->
+    <p>name: {{ loginForm.value.name }}</p>
+    <!-- ////////////////////////////////////// -->
+    <p>name: {{ showUserDetails.name }}</p>
+    <p>email: {{ showUserDetails.email }}</p>
+  </div>
+</div>

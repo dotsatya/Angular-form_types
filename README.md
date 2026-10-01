@@ -1,59 +1,100 @@
-# AngularFormTypes
+# Angular Form Types
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+This project is a practical Angular demo that shows the main ways to build and validate forms in Angular.
 
-## Development server
+## Overview
 
-To start a local development server, run:
+The app includes multiple examples of form handling patterns:
+
+- Reactive form with standalone `FormControl` instances
+- Reactive form grouped inside a `FormGroup`
+- Reactive form with validation rules
+- Template-driven form using `ngModel` and `NgForm`
+- Template-driven form with validation feedback
+
+The examples are organized under the `src/app` folder and are intended to help compare the differences between Angular form techniques.
+
+## Included form examples
+
+### 1. Reactive form
+Location: `src/app/reactive-form/`
+
+- Uses `FormControl` for each field
+- Shows how to read values and set values programmatically
+- Good for logic-driven form state
+
+### 2. Group reactive form
+Location: `src/app/group-reactive-form/`
+
+- Uses `FormGroup` to wrap multiple controls
+- Demonstrates grouped form data with `formControlName`
+- Useful when a form logically belongs to one model
+
+### 3. Group reactive form with validation
+Location: `src/app/group-reactive-form-validation/`
+
+- Adds validators like `required`, `minLength`, `email`, and `pattern`
+- Displays error messages when fields are invalid
+- Shows how to handle `dirty` and `touched` states
+
+### 4. Template-driven form
+Location: `src/app/template-driven-form/`
+
+- Uses `ngModel` and `NgForm`
+- Collects form values on submit
+- Easier for simpler forms and quick form creation
+
+### 5. Template-driven form with validation
+Location: `src/app/template-driven-form-validation/`
+
+- Adds validation attributes such as `required`, `minlength`, and `email`
+- Shows inline validation messages
+- Includes a password pattern example and submit button disabling
+
+## Run the project
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the app:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Then open:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200/
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Switch between examples
 
-```bash
-ng generate --help
+The main app imports each form component in `src/app/app.ts`, and the currently shown demo is selected from `src/app/app.html`.
+
+If you want to preview a different example, uncomment the matching component tag in `src/app/app.html`.
+
+Example:
+
+```html
+<app-reactive-form></app-reactive-form>
 ```
 
-## Building
+## Notes
 
-To build the project run:
+This project is designed as a learning reference for Angular forms, especially for comparing:
 
-```bash
-ng build
-```
+- reactive vs template-driven approaches
+- grouped vs standalone controls
+- validation patterns in Angular
+- form submission and value handling
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Technology
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Angular
+- Angular Forms
+- TypeScript
+- Angular CLI
